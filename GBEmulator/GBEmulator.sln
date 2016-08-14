@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBEmulator", "GBEmulator\GBEmulator.csproj", "{83D1E6B6-7A95-4A27-A081-F013CD4D39E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBEmulator.Test", "GBEmulator.Test\GBEmulator.Test.csproj", "{5B12A2A0-BCFB-4003-9D45-FAB5482B26E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83D1E6B6-7A95-4A27-A081-F013CD4D39E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83D1E6B6-7A95-4A27-A081-F013CD4D39E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83D1E6B6-7A95-4A27-A081-F013CD4D39E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83D1E6B6-7A95-4A27-A081-F013CD4D39E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B12A2A0-BCFB-4003-9D45-FAB5482B26E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B12A2A0-BCFB-4003-9D45-FAB5482B26E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B12A2A0-BCFB-4003-9D45-FAB5482B26E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B12A2A0-BCFB-4003-9D45-FAB5482B26E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
