@@ -21,6 +21,7 @@ namespace GBEmulator.Model
             register = new byte[8];
             regs = new RegisterBank();
             isPaused = false;
+            workRAM = new Memory(8 * 1024);
         }
 
         public void Load()
@@ -458,79 +459,175 @@ namespace GBEmulator.Model
                         }
                     }
                 #endregion
-                #region 8x
+                #region 8x DONE
                 case 0x08:
                     {
                         switch (currentInstruction & 0xF)
                         {
                             case 0x00:
+                                regs.Add('A', 'B');
+                                return;
                             case 0x01:
+                                regs.Add('A', 'C');
+                                return;
                             case 0x02:
+                                regs.Add('A', 'D');
+                                return;
                             case 0x03:
+                                regs.Add('A', 'E');
+                                return;
                             case 0x04:
+                                regs.Add('A', 'H');
+                                return;
                             case 0x05:
+                                regs.Add('A', 'L');
+                                return;
                             case 0x06:
+                                regs.Add('A', workRAM.read(regs.get("HL")));
+                                return;
                             case 0x07:
+                                regs.Add('A', 'A');
+                                return;
                             case 0x08:
+                                regs.Adc('A', 'B');
+                                return;
                             case 0x09:
+                                regs.Adc('A', 'C');
+                                return;
                             case 0x0A:
+                                regs.Adc('A', 'D');
+                                return;
                             case 0x0B:
+                                regs.Adc('A', 'E');
+                                return;
                             case 0x0C:
+                                regs.Adc('A', 'H');
+                                return;
                             case 0x0D:
+                                regs.Adc('A', 'L');
+                                return;
                             case 0x0E:
+                                regs.Adc('A', workRAM.read(regs.get("HL")));
+                                return;
                             case 0x0F:
+                                regs.Adc('A', 'A');
+                                return;
                             default:
                                 throw new CPUException();
                         }
                     }
                 #endregion
-                #region 9x
+                #region 9x DONE
                 case 0x09:
                     {
                         switch (currentInstruction & 0xF)
                         {
                             case 0x00:
+                                regs.Sub('A', 'B');
+                                return;
                             case 0x01:
+                                regs.Sub('A', 'C');
+                                return;
                             case 0x02:
+                                regs.Sub('A', 'D');
+                                return;
                             case 0x03:
+                                regs.Sub('A', 'E');
+                                return;
                             case 0x04:
+                                regs.Sub('A', 'H');
+                                return;
                             case 0x05:
+                                regs.Sub('A', 'L');
+                                return;
                             case 0x06:
+                                regs.Sub('A', workRAM.read(regs.get("HL")));
+                                return;
                             case 0x07:
+                                regs.Sub('A', 'A');
+                                return;
                             case 0x08:
+                                regs.Sbc('A', 'B');
+                                return;
                             case 0x09:
+                                regs.Sbc('A', 'C');
+                                return;
                             case 0x0A:
+                                regs.Sbc('A', 'D');
+                                return;
                             case 0x0B:
+                                regs.Sbc('A', 'E');
+                                return;
                             case 0x0C:
+                                regs.Sbc('A', 'H');
+                                return;
                             case 0x0D:
+                                regs.Sbc('A', 'L');
+                                return;
                             case 0x0E:
+                                regs.Sbc('A', workRAM.read(regs.get("HL")));
+                                return;
                             case 0x0F:
+                                regs.Sbc('A', 'A');
+                                return;
                             default:
                                 throw new CPUException();
                         }
                     }
                 #endregion
-                #region Ax
+                #region Ax DONE
                 case 0x0A:
                     {
                         switch (currentInstruction & 0xF)
                         {
                             case 0x00:
+                                regs.And('A', 'B');
+                                return;
                             case 0x01:
+                                regs.And('A', 'C');
+                                return;
                             case 0x02:
+                                regs.And('A', 'D');
+                                return;
                             case 0x03:
+                                regs.And('A', 'E');
+                                return;
                             case 0x04:
+                                regs.And('A', 'H');
+                                return;
                             case 0x05:
+                                regs.And('A', 'L');
+                                return;
                             case 0x06:
+                                regs.And('A', workRAM.read(regs.get("HL")));
+                                return;
                             case 0x07:
+                                regs.And('A', 'A');
+                                return;
                             case 0x08:
+                                regs.Xor('A', 'B');
+                                return;
                             case 0x09:
+                                regs.Xor('A', 'C');
+                                return;
                             case 0x0A:
+                                regs.Xor('A', 'D');
+                                return;
                             case 0x0B:
+                                regs.Xor('A', 'E');
+                                return;
                             case 0x0C:
+                                regs.Xor('A', 'H');
+                                return;
                             case 0x0D:
+                                regs.Xor('A', 'L');
+                                return;
                             case 0x0E:
+                                regs.Xor('A', workRAM.read(regs.get("HL")));
+                                return;
                             case 0x0F:
+                                regs.Xor('A', 'A');
+                                return;
                             default:
                                 throw new CPUException();
                         }
@@ -542,13 +639,29 @@ namespace GBEmulator.Model
                         switch (currentInstruction & 0xF)
                         {
                             case 0x00:
+                                regs.Or('A', 'B');
+                                return;
                             case 0x01:
+                                regs.Or('A', 'C');
+                                return;
                             case 0x02:
+                                regs.Or('A', 'D');
+                                return;
                             case 0x03:
+                                regs.Or('A', 'E');
+                                return;
                             case 0x04:
+                                regs.Or('A', 'H');
+                                return;
                             case 0x05:
+                                regs.Or('A', 'L');
+                                return;
                             case 0x06:
+                                regs.Or('A', workRAM.read(regs.get("HL")));
+                                return;
                             case 0x07:
+                                regs.Or('A', 'A');
+                                return;
                             case 0x08:
                             case 0x09:
                             case 0x0A:
@@ -574,6 +687,8 @@ namespace GBEmulator.Model
                             case 0x04:
                             case 0x05:
                             case 0x06:
+                                regs.Add('A', workRAM.read(PC++));
+                                return;
                             case 0x07:
                             case 0x08:
                             case 0x09:

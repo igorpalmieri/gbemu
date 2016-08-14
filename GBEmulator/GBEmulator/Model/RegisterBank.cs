@@ -66,7 +66,6 @@ namespace GBEmulator.Model
                 throw new Exception();
         }
 
-
         public void rotateLeft(char reg, bool withCarry)
         {
             var temp = registers[getValue(reg)] << 1;
@@ -107,7 +106,195 @@ namespace GBEmulator.Model
                 C = false;
         }
 
+        public int Add(char reg1, char reg2)
+        {
+            registers[reg1] += registers[reg2];
+            if (registers[reg1] == 0)
+                Z = true;
+            else
+                Z = false;
+            N = false;
 
+            if (registers[reg1] < registers[reg2])
+                C = true;
+            else
+                C = false;
+
+            //TODO H
+            return 4;
+        }
+        public int Add(char reg1, byte d8)
+        {
+            registers[reg1] += d8;
+            if (registers[reg1] == 0)
+                Z = true;
+            else
+                Z = false;
+            N = false;
+
+            if (registers[reg1] < d8)
+                C = true;
+            else
+                C = false;
+
+            //TODO H
+            return 4;
+        }
+        public int Adc(char reg1, char reg2)
+        {
+            registers[reg1] += registers[reg2];
+            if (C)
+                registers[reg1]++;
+            
+            if (registers[reg1] == 0)
+                Z = true;
+            else
+                Z = false;
+            N = false;
+
+            if (registers[reg1] < registers[reg2])
+                C = true;
+            else
+                C = false;
+
+            //TODO H
+            return 4;
+        }
+        public int Adc(char reg1, byte d8)
+        {
+            registers[reg1] += d8;
+            if (C)
+                registers[reg1]++;
+            if (registers[reg1] == 0)
+                Z = true;
+            else
+                Z = false;
+            N = false;
+
+            if (registers[reg1] < d8)
+                C = true;
+            else
+                C = false;
+
+            //TODO H
+            return 4;
+        }
+
+        public int Sub(char reg1, char reg2)
+        {
+            if (registers[reg1] < registers[reg2])
+                C = false;
+            else
+                C = true;
+
+            registers[reg1] -= registers[reg2];
+            if (registers[reg1] == 0)
+                Z = true;
+            else
+                Z = false;
+            N = true;
+
+            //TODO H
+            return 4;
+        }
+        public int Sub(char reg1, byte d8) 
+        {
+            if (registers[reg1] < d8)
+                C = false;
+            else
+                C = true;
+
+            registers[reg1] -= d8;
+            if (registers[reg1] == 0)
+                Z = true;
+            else
+                Z = false;
+            N = true;
+
+            //TODO H
+            return 4;
+        }
+        public int Sbc(char reg1, char reg2)
+        {
+            registers[reg1] -= registers[reg2];
+            if (C)
+                registers[reg1]--;
+
+            if (registers[reg1] == 0)
+                Z = true;
+            else
+                Z = false;           
+
+            if (registers[reg1] > registers[reg2])
+                C = false;
+            else
+                C = true;
+            
+            N = true;
+
+            //TODO H
+            return 4;
+        }
+        public int Sbc(char reg1, byte d8)
+        {
+            registers[reg1] -= d8;
+            if (C)
+                registers[reg1]--;
+
+            if (registers[reg1] == 0)
+                Z = true;
+            else
+                Z = false;
+
+            if (registers[reg1] > d8)
+                C = false;
+            else
+                C = true;
+
+            N = true;
+
+            //TODO H
+            return 4;
+        }
+
+        public int And(char reg1, char reg2)
+        {
+            registers[getValue(reg1)] = (byte)(registers[getValue(reg1)] & registers[getValue(reg2)]);
+            N = false;
+            H = true;
+            C = false;
+            if (registers[getValue(reg1)] == 0)
+                Z = true;
+            else
+                Z = false;
+            return 4;
+        }
+
+        public int Or(char reg1, char reg2)
+        {
+            registers[getValue(reg1)] = (byte)(registers[getValue(reg1)] | registers[getValue(reg2)]);
+            N = false;
+            H = false;
+            C = false;
+            if (registers[getValue(reg1)] == 0)
+                Z = true;
+            else
+                Z = false;
+            return 4;
+        }
+
+        public int Xor(char reg1, char reg2)
+        {
+            registers[getValue(reg1)] = (byte)(registers[getValue(reg1)] ^ registers[getValue(reg2)]);
+            N = false;
+            H = false;
+            C = false;
+            if (registers[getValue(reg1)] == 0)
+                Z = true;
+            else
+                Z = false;
+            return 4;
+        }
         public ushort get(string regs)
         {
             if (regs.Length == 2)
